@@ -1,0 +1,4 @@
+# Firebase config — contains API keys, never push this
+js/firebase-config.js
+
+.env
