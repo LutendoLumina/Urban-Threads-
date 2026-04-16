@@ -1,13 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Urban Trends</title>
-</head>
-<body>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-logo">
+        <a href="index.html">URBAN <em>THREADS</em></a>
+      </div>
 
-    <h1>Urban Trends</h1>
-    
-</body>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+
+      <div class="nav-auth">
+        <span id="nav-user"></span>
+        <button id="nav-signout" onclick="handleSignOut()" style="display: none">Sign Out</button>
+        <a id="nav-signin" href="login.html" class="btn-signin">Sign In</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>WEAR THE <span class="highlight">STREET.</span></h1>
+            <p>Premium streetwear for those who lead, never follow.</p>
+            <a href="shop.html" class="hero-btn">SHOP THE COLLECTION</a>
+        </div>
+    </header>
+
+    <script type="module" src="./js/auth.js"></script>
+    <script type="module">
+        import { initAuth, handleSignOut } from './js/auth.js';
+        
+        // Initialize navbar update without forcing login
+        initAuth({ requireAuth: false });
+
+        // Attach signout to the window so the button can see it
+        window.handleSignOut = handleSignOut;
+    </script>
+
+  </body>
 </html>
