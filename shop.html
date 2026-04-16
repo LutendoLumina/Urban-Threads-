@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Threads | Collections</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo">
+      <a href="index.html">URBAN <em>THREADS</em></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="cart.html">Cart</a></li>
+    </ul>
+    <div class="nav-auth">
+      <span id="nav-user"></span>
+      <button id="nav-signout" onclick="handleSignOut()" style="display: none">Sign Out</button>
+      <a id="nav-signin" href="login.html" class="btn-signin">Sign In</a>
+    </div>
+  </nav>
+
+  <main class="shop-container">
+    <header class="shop-header">
+      <h2>OUR COLLECTIONS</h2>
+      <div class="category-filters">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="Hoodies">Hoodies</button>
+        <button class="filter-btn" data-category="T-Shirts">Tees</button>
+        <button class="filter-btn" data-category="Accessories">Accessories</button>
+        <button class="filter-btn" data-category="Sneakers">Sneakers</button>
+      </div>
+    </header>
+
+    <div id="product-grid" class="product-grid">
+      <div class="loader">Fetching the latest drops...</div>
+    </div>
+  </main>
+
+  <script type="module" src="./js/shop.js"></script>
+</body>
+</html>
