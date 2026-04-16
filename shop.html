@@ -1,45 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Urban Threads | Collections</title>
-  <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
-  <nav class="navbar">
-    <div class="nav-logo">
-      <a href="index.html">URBAN <em>THREADS</em></a>
-    </div>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="shop.html">Shop</a></li>
-      <li><a href="cart.html">Cart</a></li>
-    </ul>
-    <div class="nav-auth">
-      <span id="nav-user"></span>
-      <button id="nav-signout" onclick="handleSignOut()" style="display: none">Sign Out</button>
-      <a id="nav-signin" href="login.html" class="btn-signin">Sign In</a>
-    </div>
-  </nav>
-
-  <main class="shop-container">
-    <header class="shop-header">
-      <h2>OUR COLLECTIONS</h2>
-      <div class="category-filters">
-        <button class="filter-btn active" data-category="all">All</button>
-        <button class="filter-btn" data-category="Hoodies">Hoodies</button>
-        <button class="filter-btn" data-category="T-Shirts">Tees</button>
-        <button class="filter-btn" data-category="Accessories">Accessories</button>
-        <button class="filter-btn" data-category="Sneakers">Sneakers</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Urban Threads | Collections</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-logo">
+        <a href="index.html">URBAN <em>THREADS</em></a>
       </div>
-    </header>
 
-    <div id="product-grid" class="product-grid">
-      <div class="loader">Fetching the latest drops...</div>
-    </div>
-  </main>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
 
-  <script type="module" src="./js/shop.js"></script>
-</body>
+      <div class="nav-auth">
+        <div class="nav-cart">
+          <a href="cart.html" class="cart-link">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-shopping-bag"
+            >
+              <path
+                d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"
+              ></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <span id="cart-count">0</span>
+          </a>
+        </div>
+        <span id="nav-user"></span>
+        <button
+          id="nav-signout"
+          onclick="handleSignOut()"
+          style="display: none"
+        >
+          Sign Out
+        </button>
+        <a id="nav-signin" href="login.html" class="btn-signin">Sign In</a>
+      </div>
+    </nav>
+
+    <main class="shop-container">
+      <header class="shop-header">
+        <h2>OUR COLLECTIONS</h2>
+        <div class="category-filters">
+          <button class="filter-btn active" data-category="all">All</button>
+          <button class="filter-btn" data-category="Hoodies">Hoodies</button>
+          <button class="filter-btn" data-category="T-Shirts">Tees</button>
+          <button class="filter-btn" data-category="Accessories">
+            Accessories
+          </button>
+          <button class="filter-btn" data-category="Sneakers">Sneakers</button>
+        </div>
+      </header>
+
+      <div id="product-grid" class="product-grid">
+        <div class="loader">Fetching the latest drops...</div>
+      </div>
+    </main>
+
+    <script type="module" src="./js/shop.js"></script>
+  </body>
 </html>

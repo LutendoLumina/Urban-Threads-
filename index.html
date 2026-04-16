@@ -19,30 +19,58 @@
       </ul>
 
       <div class="nav-auth">
+        <div class="nav-cart">
+          <a href="cart.html" class="cart-link">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-shopping-bag"
+            >
+              <path
+                d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"
+              ></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <span id="cart-count">0</span>
+          </a>
+        </div>
         <span id="nav-user"></span>
-        <button id="nav-signout" onclick="handleSignOut()" style="display: none">Sign Out</button>
+        <button
+          id="nav-signout"
+          onclick="handleSignOut()"
+          style="display: none"
+        >
+          Sign Out
+        </button>
         <a id="nav-signin" href="login.html" class="btn-signin">Sign In</a>
       </div>
     </nav>
 
     <header class="hero">
-        <div class="hero-content">
-            <h1>WEAR THE <span class="highlight">STREET.</span></h1>
-            <p>Premium streetwear for those who lead, never follow.</p>
-            <a href="shop.html" class="hero-btn">SHOP THE COLLECTION</a>
-        </div>
+      <div class="hero-content">
+        <h1>WEAR THE <span class="highlight">STREET.</span></h1>
+        <p>Premium streetwear for those who lead, never follow.</p>
+        <a href="shop.html" class="hero-btn">SHOP THE COLLECTION</a>
+      </div>
     </header>
 
     <script type="module" src="./js/auth.js"></script>
     <script type="module">
-        import { initAuth, handleSignOut } from './js/auth.js';
-        
-        // Initialize navbar update without forcing login
-        initAuth({ requireAuth: false });
+      import { initAuth, handleSignOut } from "./js/auth.js";
 
-        // Attach signout to the window so the button can see it
-        window.handleSignOut = handleSignOut;
+      // Initialize navbar update without forcing login
+      initAuth({ requireAuth: false });
+
+      // Attach signout to the window so the button can see it
+      window.handleSignOut = handleSignOut;
     </script>
-
   </body>
 </html>

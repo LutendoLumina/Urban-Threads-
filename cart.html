@@ -1,2 +1,91 @@
-import { initAuth } from './js/auth.js';
-initAuth({ requireAuth: true });
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Urban Threads | Your Bag</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-logo">
+        <a href="index.html">URBAN <em>THREADS</em></a>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+
+      <div class="nav-auth">
+        <div class="nav-cart">
+          <a href="cart.html" class="cart-link">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-shopping-bag"
+            >
+              <path
+                d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"
+              ></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <span id="cart-count">0</span>
+          </a>
+        </div>
+        <span id="nav-user"></span>
+        <button
+          id="nav-signout"
+          onclick="handleSignOut()"
+          style="display: none"
+        >
+          Sign Out
+        </button>
+        <a id="nav-signin" href="login.html" class="btn-signin">Sign In</a>
+      </div>
+    </nav>
+
+    <main class="cart-container">
+      <header class="cart-header">
+        <h1>YOUR BAG</h1>
+      </header>
+
+      <div class="cart-content">
+        <div id="cart-display" class="cart-display">
+          <p class="empty-msg">Your bag is currently empty.</p>
+        </div>
+
+        <aside class="cart-summary">
+          <h3>Order Summary</h3>
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="subtotal">$0.00</span>
+          </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span>FREE</span>
+          </div>
+          <hr />
+          <div class="summary-row total">
+            <span>Total</span>
+            <span id="grand-total">$0.00</span>
+          </div>
+          <button id="checkout-btn" class="checkout-btn">
+            PROCEED TO CHECKOUT
+          </button>
+        </aside>
+      </div>
+    </main>
+
+    <script type="module" src="./js/cart-display.js"></script>
+  </body>
+</html>

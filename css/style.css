@@ -15,6 +15,8 @@ body {
   font-family: 'DM Sans', sans-serif;
 }
 
+/* NAVBAR SECTION */
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -93,7 +95,37 @@ body {
   border: none;
 }
 
-/* hero section */
+.nav-cart {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0 15px;
+}
+
+.cart-link {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.cart-link:hover { color: var(--accent); }
+
+#cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: var(--accent); /* Your bright streetwear color */
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+    min-width: 18px;
+    text-align: center;
+}
+
+
+/* HERO SECTION */
 .hero {
   height: 80vh;
   display: flex;
@@ -165,4 +197,68 @@ body {
 .add-btn { 
     width: 100%; padding: 10px; background: var(--accent); color: white; 
     border: none; border-radius: 6px; cursor: pointer; font-weight: bold;
+}
+
+
+/* cart section */
+
+.cart-container { padding: 40px 5%; max-width: 1200px; margin: 0 auto; }
+.cart-content { display: grid; grid-template-columns: 1fr 350px; gap: 40px; margin-top: 30px; }
+
+/* Individual Cart Item */
+.cart-item { 
+    display: flex; gap: 20px; align-items: center; 
+    padding: 20px 0; border-bottom: 1px solid #333; 
+}
+.cart-item img { width: 100px; height: 120px; object-fit: cover; border-radius: 8px; }
+.item-info { flex: 1; }
+.item-controls { display: flex; align-items: center; gap: 15px; }
+
+/* Summary Sidebar */
+.cart-summary { 
+    background: #1a172e; padding: 30px; border-radius: 12px; height: fit-content; 
+}
+.summary-row { display: flex; justify-content: space-between; margin: 15px 0; }
+.summary-row.total { font-size: 1.4rem; font-weight: bold; color: var(--accent); }
+.checkout-btn { 
+    width: 100%; padding: 15px; background: var(--accent); color: white; 
+    border: none; border-radius: 8px; font-weight: bold; cursor: pointer; 
+}
+
+.item-quantity-controls {
+    display: flex;
+    align-items: center;
+    background: #f4f4f4;
+    border-radius: 4px;
+    padding: 5px;
+    height: fit-content;
+}
+
+.qty-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 10px;
+    color: #333;
+    transition: color 0.2s;
+}
+
+.qty-btn:hover {
+    color: var(--accent);
+}
+
+.qty-value {
+    font-weight: bold;
+    min-width: 25px;
+    text-align: center;
+    font-size: 1rem;
+    color: black;
+}
+
+.item-subtotal {
+    font-weight: bold;
+    margin-left: auto;
+    width: 80px;
+    text-align: right;
 }
