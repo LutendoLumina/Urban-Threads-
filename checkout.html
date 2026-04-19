@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout | Streetwear Studio</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <div class="checkout-container">
+      <div class="checkout-form-section">
+        <h2>Shipping & Payment</h2>
+        <form id="checkout-form">
+          <div class="input-group">
+            <input
+              type="text"
+              id="full-name"
+              placeholder="Full Name"
+              required
+            />
+            <input
+              type="email"
+              id="email"
+              placeholder="Email Address"
+              required
+            />
+          </div>
+          <input
+            type="text"
+            id="address"
+            placeholder="Shipping Address"
+            required
+          />
+
+          <div id="stripe-payment-area">
+            <h3>Card Details</h3>
+            <div id="card-element" class="stripe-input-box"></div>
+            <div id="card-errors" role="alert" class="error-msg"></div>
+          </div>
+
+          <button type="submit" id="submit-button" class="checkout-submit-btn">
+            COMPLETE PURCHASE
+          </button>
+        </form>
+      </div>
+
+      <aside class="checkout-summary">
+        <h3>ORDER SUMMARY</h3>
+        <div id="checkout-items-list"></div>
+
+        <div class="checkout-totals">
+          <div class="total-row">
+            <span>Total</span>
+            <span id="checkout-grand-total">R0.00</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <script type="module" src="js/checkout.js"></script>
+  </body>
+</html>

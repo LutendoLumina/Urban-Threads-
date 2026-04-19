@@ -6,10 +6,12 @@ import {
   deleteDoc,
   updateDoc,
   increment,
-  getDoc // Added missing import
+  getDoc,
+  getDocs,
+  addDoc,
 } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-import { initAuth } from './auth.js';
+import { initAuth } from "./auth.js";
 
 // Initialize auth first
 initAuth({ requireAuth: true });
@@ -84,7 +86,7 @@ window.updateQty = async (id, change) => {
   const itemRef = doc(db, "users", user.uid, "cart", id);
 
   try {
-    const docSnap = await getDoc(itemRef); // Now works because getDoc is imported
+    const docSnap = await getDoc(itemRef);
     const currentQty = docSnap.data().quantity;
 
     if (currentQty <= 1 && change === -1) {
@@ -105,4 +107,16 @@ window.updateQty = async (id, change) => {
 window.removeItem = async (id) => {
   const user = auth.currentUser;
   await deleteDoc(doc(db, "users", user.uid, "cart", id));
+};
+
+
+window.handleCheckout = () => {
+  const user = auth.currentUser;
+  if (!user) {
+    alert("Please log in to continue.");
+    return;
+  }
+
+  // Just redirect - do NOT delete anything here
+  window.location.href = "checkout.html";
 };
