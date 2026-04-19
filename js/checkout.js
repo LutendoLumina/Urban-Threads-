@@ -81,37 +81,34 @@ form.addEventListener('submit', async (event) => {
     } else {
         // Stripe verified the test card (4242)! 
         // Now we process the database logic
-        await finalizeFirebaseOrder(user);
+        await finalizeOrder(user);
     }
 });
 
-async function finalizeFirebaseOrder(user) {
-    try {
-        const cartRef = collection(db, "users", user.uid, "cart");
-        const snapshot = await getDocs(cartRef);
-        
-        if (snapshot.empty) return;
+async function finalizeOrder(user) {
+    const cartRef = collection(db, "users", user.uid, "cart");
+    const snapshot = await getDocs(cartRef);
+    
+    // Ensure total is captured exactly as displayed in the UI
+    const finalTotal = document.getElementById('checkout-grand-total').innerText;
 
-        const orderData = {
-            items: snapshot.docs.map(d => d.data()),
-            totalAmount: document.getElementById('checkout-grand-total').innerText,
-            shippingAddress: document.getElementById('address').value,
-            createdAt: new Date(),
-            status: "Paid"
-        };
+    const orderData = {
+        // Map the docs to a clean array of objects
+        items: snapshot.docs.map(doc => ({
+            name: doc.data().name,
+            price: doc.data().price,
+            quantity: doc.data().quantity
+        })),
+        total: finalTotal, // Must match what orders-display.js looks for
+        date: new Date()   // Firestore will convert this to a Timestamp
+    };
 
-        // 1. Save permanent record to 'orders'
-        await addDoc(collection(db, "users", user.uid, "orders"), orderData);
+    // Save to Firestore
+    await addDoc(collection(db, "users", user.uid, "orders"), orderData);
+    
+    // Clear the cart after saving the order
+    const deletePromises = snapshot.docs.map(d => deleteDoc(d.ref));
+    await Promise.all(deletePromises);
 
-        // 2. Clear the cart
-        const deletePromises = snapshot.docs.map(docSnap => deleteDoc(docSnap.ref));
-        await Promise.all(deletePromises);
-
-        // 3. Redirect to success
-        window.location.href = "success.html";
-        
-    } catch (err) {
-        console.error("Order processing failed:", err);
-        alert("There was an error saving your order. Please try again.");
-    }
+    window.location.href = "success.html";
 }

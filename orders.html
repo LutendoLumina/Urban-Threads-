@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History | Streetwear Studio</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">STREETWEAR STUDIO</div>
+        <div class="nav-links">
+            <a href="shop.html">Shop</a>
+            <a href="cart.html">Cart</a>
+            <a href="orders.html" class="active">Orders</a>
+        </div>
+    </nav>
+
+    <main class="orders-container">
+        <header class="orders-header">
+            <h1>Your Order History</h1>
+            <p>Track your past streetwear purchases and receipts.</p>
+        </header>
+
+        <div id="orders-list">
+            <div class="loading-state">
+                <p>Retrieving your drops...</p>
+            </div>
+        </div>
+
+        <div class="orders-footer">
+            <a href="shop.html" class="btn-secondary">← Back to Shop</a>
+        </div>
+    </main>
+
+    <script type="module" src="js/orders-display.js"></script>
+</body>
+</html>

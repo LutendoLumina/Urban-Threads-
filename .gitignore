@@ -1,6 +1,2 @@
-# Firebase config — contains API keys, never push this
 js/firebase-config.js
-js/order-display.js
-orders.html
-.env
 
