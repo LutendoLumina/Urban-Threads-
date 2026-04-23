@@ -3,7 +3,7 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.0/firebase
 import { getAuth } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
 
-// Your web app's Firebase configuration
+// web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAXn5UouO3uoP2NbmbAUY8tdtW7gxJxcoY",
   authDomain: "urbanthreadsstore-4e1c5.firebaseapp.com",

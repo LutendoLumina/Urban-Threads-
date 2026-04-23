@@ -4,15 +4,69 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout | Streetwear Studio</title>
-    <script src="./js/theme.js"></script>
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("urban-threads-theme");
+        if (savedTheme === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      })();
+    </script>
     <link rel="stylesheet" href="./css/style.css" />
     <script src="https://js.stripe.com/v3/"></script>
   </head>
   <body>
-    <button class="theme-toggle theme-toggle--floating" type="button" data-theme-toggle>
-      <span class="theme-toggle-icon" aria-hidden="true"></span>
-      <span class="theme-toggle-label" data-theme-toggle-label>Dark</span>
-    </button>
+    <!-- NAVBAR SECTION -->
+    <nav class="navbar">
+      <div class="nav-logo">
+        <a href="index.html">URBAN <em>THREADS</em></a>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+
+      <div class="nav-auth">
+        <button id="theme-toggle" class="theme-btn" type="button">
+          <span id="theme-icon">🌙</span>
+          <span id="theme-text">Dark Mode</span>
+        </button>
+        <div class="nav-cart">
+          <a href="cart.html" class="cart-link">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"
+              ></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <span id="cart-count">0</span>
+          </a>
+        </div>
+        <span id="nav-user"></span>
+        <button
+          id="nav-signout"
+          onclick="handleSignOut()"
+          style="display: none"
+        >
+          Sign Out
+        </button>
+        <a id="nav-signin" href="login.html" class="btn-signin">Sign In</a>
+      </div>
+    </nav>
+
     <div class="checkout-container">
       <div class="checkout-form-section">
         <h2>Shipping & Payment</h2>

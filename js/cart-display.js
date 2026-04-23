@@ -18,7 +18,7 @@ initAuth({ requireAuth: true });
 
 const cartDisplay = document.getElementById("cart-display");
 const grandTotalEl = document.getElementById("grand-total");
-const subtotalEl = document.getElementById("subtotal"); // Added for total updates
+const subtotalEl = document.getElementById("subtotal");
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -32,10 +32,12 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+//  render the cart
 function renderCart(snapshot) {
   cartDisplay.innerHTML = "";
   let total = 0;
 
+  // if cart is empty
   if (snapshot.empty) {
     cartDisplay.innerHTML =
       '<p class="empty-msg">Your bag is currently empty.</p>';
@@ -72,13 +74,14 @@ function renderCart(snapshot) {
   updateTotals(total);
 }
 
-// Fixed: Added missing updateTotals function
+//  Update total
 function updateTotals(total) {
   const formattedTotal = `R${total.toFixed(2)}`;
   if (subtotalEl) subtotalEl.innerText = formattedTotal;
   if (grandTotalEl) grandTotalEl.innerText = formattedTotal;
 }
 
+// Update quantity
 window.updateQty = async (id, change) => {
   const user = auth.currentUser;
   if (!user) return;
@@ -104,12 +107,13 @@ window.updateQty = async (id, change) => {
   }
 };
 
+// Remove item
 window.removeItem = async (id) => {
   const user = auth.currentUser;
   await deleteDoc(doc(db, "users", user.uid, "cart", id));
 };
 
-
+// Handle checkout
 window.handleCheckout = () => {
   const user = auth.currentUser;
   if (!user) {
@@ -117,6 +121,5 @@ window.handleCheckout = () => {
     return;
   }
 
-  // Just redirect - do NOT delete anything here
   window.location.href = "checkout.html";
 };

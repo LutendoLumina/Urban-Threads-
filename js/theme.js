@@ -1,78 +1,38 @@
-// Applies persisted/OS theme ASAP and wires up any [data-theme-toggle] buttons.
-(function () {
-  var STORAGE_KEY = "urbanThreads.theme"; // "light" | "dark"
-  var root = document.documentElement;
+// theme.js
 
-  function getPreferredTheme() {
-    try {
-      var saved = localStorage.getItem(STORAGE_KEY);
-      if (saved === "light" || saved === "dark") return saved;
-    } catch (e) {
-      // ignore
+window.onload = function() {
+    // 1. Select the elements
+    const themeBtn = document.getElementById('theme-toggle');
+    const themeText = document.getElementById('theme-text');
+    const themeIcon = document.getElementById('theme-icon');
+
+    // Safety check: Only run the code if the button is actually on this specific page
+    if (themeBtn) {
+        
+        // 2. Check for a saved preference
+        const savedTheme = localStorage.getItem('urban-threads-theme');
+
+        if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            if(themeText) themeText.innerText = "Dark Mode";
+            if(themeIcon) themeIcon.innerText = "☀️";
+        }
+
+        // 3. Listen for clicks
+        themeBtn.addEventListener('click', () => {
+            let currentTheme = document.documentElement.getAttribute('data-theme');
+
+            if (currentTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('urban-threads-theme', 'dark');
+                if(themeText) themeText.innerText = "Light Mode";
+                if(themeIcon) themeIcon.innerText = "🌙";
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('urban-threads-theme', 'light');
+                if(themeText) themeText.innerText = "Dark Mode";
+                if(themeIcon) themeIcon.innerText = "☀️";
+            }
+        });
     }
-    return window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: light)").matches
-      ? "light"
-      : "dark";
-  }
-
-  function applyTheme(theme) {
-    root.setAttribute("data-theme", theme);
-    // Helps native form controls match theme.
-    root.style.colorScheme = theme;
-    try {
-      localStorage.setItem(STORAGE_KEY, theme);
-    } catch (e) {
-      // ignore
-    }
-    updateToggleA11y(theme);
-  }
-
-  function updateToggleA11y(theme) {
-    var pressed = theme === "dark";
-    var toggles = document.querySelectorAll("[data-theme-toggle]");
-    toggles.forEach(function (btn) {
-      btn.setAttribute("aria-pressed", String(pressed));
-      btn.setAttribute(
-        "aria-label",
-        theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
-      );
-      var label = btn.querySelector("[data-theme-toggle-label]");
-      if (label) label.textContent = theme === "dark" ? "Dark" : "Light";
-    });
-  }
-
-  // Initial theme (before first paint).
-  applyTheme(getPreferredTheme());
-
-  // Wire up toggles after DOM is ready.
-  window.addEventListener("DOMContentLoaded", function () {
-    document.addEventListener("click", function (e) {
-      var target = e.target;
-      if (!(target instanceof Element)) return;
-      var btn = target.closest("[data-theme-toggle]");
-      if (!btn) return;
-      var current = root.getAttribute("data-theme") === "light" ? "light" : "dark";
-      applyTheme(current === "dark" ? "light" : "dark");
-    });
-    updateToggleA11y(root.getAttribute("data-theme") === "light" ? "light" : "dark");
-  });
-
-  // If user never chose, follow OS changes live.
-  try {
-    var media = window.matchMedia("(prefers-color-scheme: light)");
-    media.addEventListener("change", function () {
-      var saved = null;
-      try {
-        saved = localStorage.getItem(STORAGE_KEY);
-      } catch (e) {
-        // ignore
-      }
-      if (saved === "light" || saved === "dark") return;
-      applyTheme(media.matches ? "light" : "dark");
-    });
-  } catch (e) {
-    // ignore
-  }
-})();
-
+};

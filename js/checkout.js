@@ -2,12 +2,11 @@ import { db, auth } from "./firebase-config.js";
 import { collection, getDocs, addDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
-// 1. INITIALIZE STRIPE 
-// Replace the string below with your ACTUAL pk_test_... key from your dashboard
+// INITIALIZE STRIPE 
 const stripe = Stripe('pk_test_51TLhqlCY6NbIX42SJI3mIY9HT6Y3PHCjG8XBDxtLkzXQXiPz3ixsxhj6oC2hCh50KaarDfCcpJoTM3QStq7dXaI800EKGn1Cy5'); 
 const elements = stripe.elements();
 
-// Create the card element with basic styling for a dark theme
+// Create the card element
 const card = elements.create('card', {
     style: {
         base: {
@@ -21,10 +20,9 @@ const card = elements.create('card', {
     }
 });
 
-// Mount the Stripe card element into the div in your HTML
 card.mount('#card-element');
 
-// 2. RENDER THE SUMMARY ON LOAD
+// RENDER THE SUMMARY ON LOAD
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         loadCheckoutSummary(user);
@@ -57,7 +55,7 @@ async function loadCheckoutSummary(user) {
     totalEl.innerText = `R${total.toFixed(2)}`;
 }
 
-// 3. HANDLE STRIPE PAYMENT & FIREBASE ORDER
+// HANDLE STRIPE PAYMENT & FIREBASE ORDER
 const form = document.getElementById('checkout-form');
 
 form.addEventListener('submit', async (event) => {
@@ -99,8 +97,8 @@ async function finalizeOrder(user) {
             price: doc.data().price,
             quantity: doc.data().quantity
         })),
-        total: finalTotal, // Must match what orders-display.js looks for
-        date: new Date()   // Firestore will convert this to a Timestamp
+        total: finalTotal,
+        date: new Date()
     };
 
     // Save to Firestore

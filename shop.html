@@ -20,9 +20,9 @@
       </ul>
 
       <div class="nav-auth">
-        <button class="theme-toggle" type="button" data-theme-toggle>
-          <span class="theme-toggle-icon" aria-hidden="true"></span>
-          <span class="theme-toggle-label" data-theme-toggle-label>Dark</span>
+        <button id="theme-toggle" class="theme-btn" type="button">
+          <span id="theme-icon">🌙</span>
+          <span id="theme-text">Dark Mode</span>
         </button>
         <div class="nav-cart">
           <a href="cart.html" class="cart-link">
@@ -62,8 +62,18 @@
     <main class="shop-container">
       <header class="shop-header">
         <h2>OUR COLLECTIONS</h2>
+
+        <div class="search-wrapper">
+          <input
+            type="text"
+            id="product-search"
+            placeholder="Search for drops (e.g. Hoodie)..."
+          />
+          <span class="search-icon">🔍</span>
+        </div>
+
         <div class="category-filters">
-          <button class="filter-btn active" data-category="all">All</button>
+          <button class="filter-btn active" data-category="All">All</button>
           <button class="filter-btn" data-category="Hoodies">Hoodies</button>
           <button class="filter-btn" data-category="T-Shirts">Tees</button>
           <button class="filter-btn" data-category="Accessories">

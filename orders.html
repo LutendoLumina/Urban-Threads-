@@ -1,47 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Order History | Streetwear Studio</title>
     <script src="./js/theme.js"></script>
-    <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
     <nav class="navbar">
-        <div class="nav-logo">
-            <a href="index.html">URBAN <em>THREADS</em></a>
-        </div>
-        <div class="nav-links">
-            <a href="shop.html">Shop</a>
-            <a href="cart.html">Cart</a>
-            <a href="orders.html" class="active">Orders</a>
-        </div>
-        <div class="nav-auth">
-            <button class="theme-toggle" type="button" data-theme-toggle>
-                <span class="theme-toggle-icon" aria-hidden="true"></span>
-                <span class="theme-toggle-label" data-theme-toggle-label>Dark</span>
-            </button>
-        </div>
+      <div class="nav-logo">
+        <a href="index.html">URBAN <em>THREADS</em></a>
+      </div>
+      <div class="nav-links">
+        <a href="shop.html">Shop</a>
+        <a href="cart.html">Cart</a>
+        <a href="orders.html" class="active">Orders</a>
+      </div>
+      <div class="nav-auth">
+        <button id="theme-toggle" class="theme-btn" type="button">
+          <span id="theme-icon">🌙</span>
+          <span id="theme-text">Dark Mode</span>
+        </button>
+      </div>
     </nav>
 
     <main class="orders-container">
-        <header class="orders-header">
-            <h1>Your Order History</h1>
-            <p>Track your past streetwear purchases and receipts.</p>
-        </header>
+      <header class="orders-header">
+        <h1>Your Order History</h1>
+        <p>Track your past streetwear purchases and receipts.</p>
+      </header>
 
-        <div id="orders-list">
-            <div class="loading-state">
-                <p>Retrieving your drops...</p>
-            </div>
+      <div id="orders-list">
+        <div class="loading-state">
+          <p>Retrieving your drops...</p>
         </div>
+      </div>
 
-        <div class="orders-footer">
-            <a href="shop.html" class="btn-secondary">← Back to Shop</a>
-        </div>
+      <div class="orders-footer">
+        <a href="shop.html" class="btn-secondary">← Back to Shop</a>
+      </div>
     </main>
 
     <script type="module" src="js/orders-display.js"></script>
-</body>
+  </body>
 </html>
